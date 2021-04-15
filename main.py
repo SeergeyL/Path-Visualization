@@ -106,15 +106,24 @@ class Grid:
 
     def init(self):
         """
-        Prepares the grid for work, set start and end node in random places,
-        updates all Node's neighbors in a grid
+        Prepares grid for work
         """
 
-        # Grid init
+        # Create grid
         self._grid = self._generate_grid()
+
+        # Updates nodes neighbors
         self.get_nodes_neighbors()
 
-        # Setting start and end node
+        # Set start and end node
+        self._set_start_and_end_node()
+
+
+    def _set_start_and_end_node(self):
+        """
+        Set start and end node in random places
+        """
+
         x_start = random.randint(0, self.rows - 1)
         y_start = random.randint(0, self.cols - 1)
 
