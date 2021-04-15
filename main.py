@@ -66,7 +66,7 @@ class Node:
     def get_neighbors(self, grid):
         """
         Updates node's neighbors
-        :param grid: initialized instance of the class grid
+        :param grid: instance of the class grid
         """
         rows = grid.rows
         cols = grid.cols
@@ -90,7 +90,7 @@ class Grid:
         """
         :param width: width of the screen
         :param height: height of the screen
-        :param node_size: cell size with which it will be displayed on the screen
+        :param node_size: cell size on the screen
         :param window: main window of the program on which the grid will be displayed
         """
         self.width = width
@@ -201,13 +201,10 @@ class Grid:
 
 def bfs(grid):
     """
-    Gets the initialised instance of the Grid class and find the path
+    Gets instance of the class Grid and find the path
     from grid.start to grid.end node, showing the process of BFS on a screen.
 
-    :param grid: initialized instance of class Grid.
-    grid = Grid(width, height, node_size)
-    grid.init()
-
+    :param grid: instance of class Grid.
     :return: the path from grid.start node to grid.end node
     """
 
@@ -249,13 +246,10 @@ def bfs(grid):
 
 def dfs(grid):
     """
-    Gets the initialised instance of the Grid class and find the path
+    Gets instance of the class Grid and find the path
     from grid.start to grid.end node, showing the process of DFS on a screen.
 
-    :param grid: initialized instance of class Grid.
-    grid = Grid(width, height, node_size)
-    grid.init()
-
+    :param grid: instance of class Grid.
     :return: the path from grid.start node to grid.end node
     """
 
@@ -298,13 +292,10 @@ def dfs(grid):
 
 def dijkstra(grid):
     """
-    Gets the initialised instance of the Grid class and find the path
+    Gets instance of the class Grid and find the path
     from grid.start to grid.end node, showing the process of Dijkstra on a screen.
 
-    :param grid: initialized instance of class Grid.
-    grid = Grid(width, height, node_size)
-    grid.init()
-
+    :param grid: instance of class Grid.
     :return: the path from grid.start node to grid.end node
     """
 
@@ -352,13 +343,10 @@ def dijkstra(grid):
 
 def a_star(grid):
     """
-    Gets the initialised instance of the Grid class and find the path
+    Gets instance of the class Grid and find the path
     from grid.start to grid.end node, showing the process of A* on a screen.
 
-    :param grid: initialized instance of class Grid.
-    grid = Grid(width, height, node_size)
-    grid.init()
-
+    :param grid: instance of class Grid.
     :return: the path from grid.start node to grid.end node
     """
 
@@ -418,7 +406,7 @@ def restore_path(came_from, end):
     """
     :param came_from: dict which stores information about previous node for all visited nodes
     :param end: target node
-    :return: path from start to end node in list
+    :return path: list of nodes which represt the path from start to end node
     """
     path = [end]
     current = came_from[end]
