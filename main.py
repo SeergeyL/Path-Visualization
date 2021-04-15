@@ -102,9 +102,10 @@ class Grid:
         self._grid = None
         self.start = None
         self.end = None
+        self.setup()
 
 
-    def init(self):
+    def setup(self):
         """
         Prepares grid for work
         """
@@ -185,7 +186,7 @@ class Grid:
 
 
     def refresh_grid(self):
-        """ Reset all nodes initial state """
+        """ Reset all nodes to initial state """
 
         for x in range(self.rows):
             for y in range(self.cols):
@@ -460,7 +461,6 @@ def main():
     pygame.init()
 
     grid_instance = Grid(WIDTH, HEIGHT, NODE_SIZE, WINDOW)
-    grid_instance.init()
 
 
     # Mainloop of the program
@@ -481,7 +481,7 @@ def main():
 
                 # Clear the screen
                 if event.key == pygame.K_c:
-                    grid_instance.init()
+                    grid_instance.setup()
 
                 # Refresh the grid
                 if event.key == pygame.K_r:
