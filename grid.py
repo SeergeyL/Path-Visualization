@@ -38,6 +38,9 @@ class Grid:
         # Set start and end node
         self._set_start_and_end_node()
 
+        # Assign nodes default value
+        self.assign_weights_to_nodes(True)
+
 
     def _set_start_and_end_node(self):
         """
@@ -116,3 +119,16 @@ class Grid:
 
         self.start.change_color(colors.START_NODE_COLOR)
         self.end.change_color(colors.END_NODE_COLOR)
+
+
+    def assign_weights_to_nodes(self, flag=False):
+        """
+        Assign weights to nodes in a grid
+
+        :flag: if flag value False then node would be assigned default weight
+        otherwise random value from 1 to 20
+        """
+        for x in range(self.rows):
+            for y in range(self.cols):
+                node = self._grid[x][y]
+                node.assign_weight(use_default=flag)

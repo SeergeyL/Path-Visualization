@@ -1,5 +1,6 @@
 import pygame
 import colors
+import random
 
 
 class Node:
@@ -16,6 +17,7 @@ class Node:
         self.color = colors.DEFAULT_COLOR
         self.distance = float("inf")
         self._neighbors = None
+        self.weight = 1
 
 
     @property
@@ -69,6 +71,20 @@ class Node:
                 neighbors.append(grid.grid[self.y + dy][self.x + dx])
 
         self._neighbors = neighbors
+
+
+    def assign_weight(self, use_default=False):
+        """
+        If use_default flag is True assigns default node weight 1
+        otherwise assign random weight from 1 to 20
+
+        Weight of the node represents the cost of transition from any neighbor node
+        to this node.
+        """
+        if not use_default:
+            self.weight = random.randint(1, 20)
+        else:
+            self.weight = 1
 
 
     def __lt__(self, other):
