@@ -56,6 +56,10 @@ def main():
                 if event.key == pygame.K_r:
                     grid_instance.refresh_grid()
 
+                # Assign nodes random weight
+                if event.key == pygame.K_w:
+                    grid_instance.assign_weights_to_nodes()
+
                 # BFS visualization
                 if event.key == pygame.K_1:
                     path = bfs(grid_instance)
