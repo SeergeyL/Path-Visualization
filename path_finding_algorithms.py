@@ -130,10 +130,11 @@ def dijkstra(grid):
             if neighbor == grid.end:
                 found = True
 
-            if node.distance + 1 < neighbor.distance:
+            cost = neighbor.weight
+            if node.distance + cost < neighbor.distance:
 
                 neighbor.change_color(colors.PROCESSING_NODE_COLOR)
-                neighbor.distance = node.distance + 1
+                neighbor.distance = node.distance + cost
                 path[neighbor] = node
                 pq.put((neighbor.distance, neighbor))
 
@@ -185,10 +186,11 @@ def a_star(grid):
 
             h = heuristic(node, grid.end)
 
-            if node.distance + 1 + h < neighbor.distance:
+            cost = neighbor.weight
+            if node.distance + cost + h < neighbor.distance:
 
                 neighbor.change_color(colors.PROCESSING_NODE_COLOR)
-                neighbor.distance = node.distance + 1 + h
+                neighbor.distance = node.distance + cost + h
                 path[neighbor] = node
                 pq.put((neighbor.distance, neighbor))
 
