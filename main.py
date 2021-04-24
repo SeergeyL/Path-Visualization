@@ -10,6 +10,7 @@ HEIGHT = 600
 NODE_SIZE = 25
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Path Visualizer")
+FONT = 'Calibri'
 
 
 def handle_mouse_events(grid_instance):
@@ -30,7 +31,8 @@ def handle_mouse_events(grid_instance):
 def main():
     pygame.init()
 
-    grid_instance = Grid(WIDTH, HEIGHT, NODE_SIZE, WINDOW)
+    font = pygame.font.SysFont(FONT, NODE_SIZE // 2,  bold=True)
+    grid_instance = Grid(WIDTH, HEIGHT, NODE_SIZE, WINDOW, font)
 
     # Mainloop of the program
     run = True
@@ -59,6 +61,10 @@ def main():
                 # Assign nodes random weight
                 if event.key == pygame.K_w:
                     grid_instance.assign_weights_to_nodes()
+
+                # Toggle show weights
+                if event.key == pygame.K_t:
+                    grid_instance.toggle_show_weights()
 
                 # BFS visualization
                 if event.key == pygame.K_1:

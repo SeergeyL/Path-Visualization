@@ -19,11 +19,9 @@ class Node:
         self._neighbors = None
         self.weight = 1
 
-
     @property
     def neighbors(self):
         return self._neighbors
-
 
     def _display_visited_node(self, surface):
         """ Display node with custom border """
@@ -33,7 +31,6 @@ class Node:
 
         pygame.draw.rect(surface, colors.NODE_BORDER_COLOR,
                          (self.x * self.size, self.y * self.size, self.size, self.size), 1)
-
 
     def display_node(self, surface):
 
@@ -48,13 +45,11 @@ class Node:
         pygame.draw.rect(surface, self.color,
                          (self.x * self.size, self.y * self.size, self.size, self.size), span)
 
-
     def change_color(self, color):
         """ Change node's color if it is not start or end node """
 
         if self.color not in (colors.START_NODE_COLOR, colors.END_NODE_COLOR):
             self.color = color
-
 
     def get_neighbors(self, grid):
         """
@@ -72,7 +67,6 @@ class Node:
 
         self._neighbors = neighbors
 
-
     def assign_weight(self, use_default=False):
         """
         If use_default flag is True assigns default node weight 1
@@ -85,7 +79,6 @@ class Node:
             self.weight = random.randint(1, 20)
         else:
             self.weight = 1
-
 
     def __lt__(self, other):
         return False
