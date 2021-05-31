@@ -23,6 +23,7 @@ class Grid:
         self.start = None
         self.end = None
         self.show_weights = False
+        self.found_path = False
         self.setup()
 
     def setup(self):
@@ -32,6 +33,8 @@ class Grid:
 
         # Create grid
         self._grid = self._generate_grid()
+
+        self.found_path = False
 
         # Updates nodes neighbors
         self.get_nodes_neighbors()
@@ -106,6 +109,8 @@ class Grid:
 
     def refresh_grid(self):
         """ Reset all nodes to initial state """
+
+        self.found_path = False
 
         for x in range(self.rows):
             for y in range(self.cols):

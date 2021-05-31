@@ -68,23 +68,19 @@ def main():
 
                 # BFS visualization
                 if event.key == pygame.K_1:
-                    path = bfs(grid_instance)
-                    draw_path(path, grid_instance)
+                    bfs(grid_instance)
 
                 # DFS visualization
                 if event.key == pygame.K_2:
-                    path = dfs(grid_instance)
-                    draw_path(path, grid_instance)
+                    dfs(grid_instance)
 
                 # Dijkstra visualization
                 if event.key == pygame.K_3:
-                    path = dijkstra(grid_instance)
-                    draw_path(path, grid_instance)
+                    dijkstra(grid_instance)
 
                 # A* visualization
                 if event.key == pygame.K_4:
-                    path = a_star(grid_instance)
-                    draw_path(path, grid_instance)
+                    a_star(grid_instance)
 
         pygame.display.update()
 

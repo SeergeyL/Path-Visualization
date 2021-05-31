@@ -1,9 +1,10 @@
 import pygame
 import colors
 from queue import Queue, PriorityQueue
-from utils import restore_path
+from utils import restore_path, draw_path
 
 
+@draw_path
 def bfs(grid):
     """
     Gets instance of the class Grid and find the path
@@ -49,6 +50,7 @@ def bfs(grid):
     return restore_path(visited, grid.end)
 
 
+@draw_path
 def dfs(grid):
     """
     Gets instance of the class Grid and find the path
@@ -81,13 +83,11 @@ def dfs(grid):
 
                 neighbor.change_color(colors.PROCESSED_NODE_COLOR)
 
-
                 visited[neighbor] = node
                 stack.append(neighbor)
 
         grid.display_grid()
         pygame.display.update()
-
 
     if not found:
         return []
@@ -95,6 +95,7 @@ def dfs(grid):
     return restore_path(visited, grid.end)
 
 
+@draw_path
 def dijkstra(grid):
     """
     Gets instance of the class Grid and find the path
@@ -147,6 +148,7 @@ def dijkstra(grid):
     return restore_path(path, grid.end)
 
 
+@draw_path
 def a_star(grid):
     """
     Gets instance of the class Grid and find the path
