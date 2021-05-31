@@ -24,6 +24,7 @@ class Grid:
         self.end = None
         self.show_weights = False
         self.found_path = False
+        self.path_length = 0
         self.setup()
 
     def setup(self):
@@ -34,7 +35,7 @@ class Grid:
         # Create grid
         self._grid = self._generate_grid()
 
-        self.found_path = False
+        self.reset_path()
 
         # Updates nodes neighbors
         self.get_nodes_neighbors()
@@ -61,6 +62,10 @@ class Grid:
 
         self.start.change_color(colors.START_NODE_COLOR)
         self.end.change_color(colors.END_NODE_COLOR)
+
+    def reset_path(self):
+        self.path_length = 0
+        self.found_path = False
 
     @property
     def grid(self):
@@ -92,13 +97,19 @@ class Grid:
         if not self._grid:
             self._grid = self._generate_grid()
 
+        # Display nodes
         for x in range(self.rows):
             for y in range(self.cols):
                 node = self._grid[x][y]
                 node.display_node(self.window)
 
         if self.show_weights:
+            # Show weights if weigths are turned on
             self.display_node_weights()
+
+        elif self.found_path:
+            # Show path length, if path found
+            self.show_text(self.end, str(self.path_length))
 
     def get_nodes_neighbors(self):
         """ Updates node's neighbors """
@@ -148,14 +159,17 @@ class Grid:
                 if node.color in (colors.START_NODE_COLOR, colors.END_NODE_COLOR, colors.WALL_COLOR):
                     continue
 
-                text_surface = self.font.render(str(node.weight), True, colors.DEFAULT_TEXT_COLOR)
+                self.show_text(node, str(node.weight))
 
-                # Calculates absolute position of the node center
-                x_center = (node.x * node.size + (node.x + 1) * node.size) // 2
-                y_center = (node.y * node.size + (node.y + 1) * node.size) // 2
+    def show_text(self, node, text):
+        text_surface = self.font.render(text, True, colors.DEFAULT_TEXT_COLOR)
 
-                text_centered = text_surface.get_rect(center=(x_center, y_center))
-                self.window.blit(text_surface, text_centered)
+        # Calculates absolute position of the node center
+        x_center = (node.x * node.size + (node.x + 1) * node.size) // 2
+        y_center = (node.y * node.size + (node.y + 1) * node.size) // 2
+
+        text_centered = text_surface.get_rect(center=(x_center, y_center))
+        self.window.blit(text_surface, text_centered)
 
     def toggle_show_weights(self):
         """

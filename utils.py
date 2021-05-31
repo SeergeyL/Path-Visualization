@@ -1,5 +1,9 @@
 import pygame
 import colors
+from collections import namedtuple
+
+
+Path = namedtuple('Path', ['path', 'length'])
 
 
 def restore_path(came_from, end):
@@ -10,11 +14,13 @@ def restore_path(came_from, end):
     """
     path = [end]
     current = came_from[end]
+    length = end.weight
     while current:
         path.append(current)
+        length += current.weight
         current = came_from[current]
 
-    return path[::-1]
+    return Path(path[::-1], length)
 
 
 def _draw_path(path, grid):
@@ -36,7 +42,9 @@ def draw_path(find_path):
             return
 
         path = find_path(grid)
+        _draw_path(path.path, grid)
+
         grid.found_path = True
-        _draw_path(path, grid)
+        grid.path_length = path.length
 
     return inner
