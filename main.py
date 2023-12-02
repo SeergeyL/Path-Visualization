@@ -2,7 +2,7 @@ import pygame
 import colors
 from grid import Grid
 from path_finding_algorithms import bfs, dfs, dijkstra, a_star
-from utils import get_clicked_node_position, draw_path
+from utils import get_clicked_node_position
 
 
 WIDTH = 1200
